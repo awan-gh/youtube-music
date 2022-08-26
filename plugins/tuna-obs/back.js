@@ -45,7 +45,11 @@ module.exports = async (win) => {
 		data.album_url = songInfo.imageSrc;
 		data.title = songInfo.title;
 		data.artists = [songInfo.artist];
-		data.status = songInfo.isPaused ? 'stopped' : 'playing';
+		if (songInfo.isPaused) {
+			data.status = 'stopped';
+		} else {
+			data.status = 'playing';
+		}
 		data.album = songInfo.album;
 		post(data);
 	})
